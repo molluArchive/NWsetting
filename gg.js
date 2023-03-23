@@ -3,11 +3,15 @@ let akmong_level = [
 ]
 
 let Urangdan3 = {
+    name:'유랑단 3',
     basic:11600,
-    gol:[],
+    Gol:[],
     Udoo:[],
     Hoibok:[]
 }
+
+const name_p = document.getElementById('name')
+name_p.textContent = Urangdan3.name
 
 const cajum = document.getElementById('cajum')
 cajum.textContent = Number(Urangdan3.basic)
@@ -30,24 +34,38 @@ setting(Urangdan3.Udoo,5,6,2,580)
 setting(Urangdan3.Udoo,7,10,2,1044)
 setting(Urangdan3.Udoo,11,16,5,1044)
 setting(Urangdan3.Udoo,17,20,10,1044)
+setting(Urangdan3.Hoibok,1,2,1,116)
+setting(Urangdan3.Hoibok,3,3,2,116)
+setting(Urangdan3.Hoibok,4,4,4,231)
 
+// select 세팅하기
 const gol_select = document.getElementById('gol_select')
 const udoo_select = document.getElementById('udoo_select')
-for(let i=0;i<Urangdan3.Udoo.length+1;i++){
-    let option = document.createElement('option')
-    option.value = i
-    option.textContent = i
-    udoo_select.appendChild(option)
-}
+const hoibok_select = document.getElementById('hoibok_select')
 
-const change_udoo = (option) => {
-    let udoo = Number(option.value)
-    let akmong_point = 0
-    let aa = Urangdan3.Udoo.slice(0,udoo).reduce((sum,obj)=>{
-        akmong_point += obj.akmong_point
+const setting_select = (select,array) => {
+    for(let i=0;i<array.length+1;i++){
+        let option = document.createElement('option')
+        option.value = i
+        option.textContent = i
+        select.appendChild(option)
+    }
+}
+setting_select(gol_select,Urangdan3.Gol)
+setting_select(udoo_select,Urangdan3.Udoo)
+setting_select(hoibok_select,Urangdan3.Hoibok)
+
+
+//
+const change_select = (option,array) => {
+    let level = Number(option.value)
+    let point = 0
+    let aa = array.slice(0,level).reduce((sum,obj)=>{
+        point += obj.akmong_point
         return sum + obj.cajum
     },0)
 
+    akmong_point += point
     cajum.textContent = Number(Urangdan3.basic) + aa
     akmong_level_change(akmong_point)
 }

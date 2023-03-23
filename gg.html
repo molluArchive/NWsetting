@@ -7,20 +7,18 @@
     <title>Document</title>
 </head>
 <body>
+    <p id="name"></p>
     <div>
         <span>gol</span>
         <select id="gol_select" onchange=""></select>
     </div>
     <div>
         <span>udoo</span>
-        <select id="udoo_select" onchange="change_udoo(this)">
-            <!-- <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option> -->
-        </select>
+        <select id="udoo_select" onchange="change_select(this,Urangdan3.Udoo)"></select>
+    </div>
+    <div>
+        <span>Hoibok</span>
+        <select id="hoibok_select" onchange="change_select(this,Urangdan3.Hoibok)"></select>
     </div>
     <p id="cajum"></p>
     <p id="akmong_point"></p>
