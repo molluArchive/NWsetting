@@ -18,7 +18,6 @@ const cajum = document.getElementById('cajum')
 cajum.textContent = Number(Urangdan3.basic)
 
 const akmong_point_p = document.getElementById('akmong_point')
-let akmong_point = 0
 akmong_point_p.textContent = '악몽레벨:0, 악몽점수:0/5'
 
 const setting = function(array,start,end,akmong_point,cajum){
