@@ -5,9 +5,10 @@ let akmong_level = [
 let Urangdan3 = {
     name:'유랑단 3',
     basic:11600,
+    now:{},
     Gol:[],
     Udoo:[],
-    Hoibok:[]
+    Hoibok:[],
 }
 
 const name_p = document.getElementById('name')
@@ -18,7 +19,7 @@ cajum.textContent = Number(Urangdan3.basic)
 
 const akmong_point_p = document.getElementById('akmong_point')
 let akmong_point = 0
-akmong_point_p.textContent = 'level:0, point:0/5'
+akmong_point_p.textContent = '악몽레벨:0, 악몽점수:0/5'
 
 const setting = function(array,start,end,akmong_point,cajum){
     for (let i=start;i<end+1;i++){
@@ -56,17 +57,23 @@ setting_select(udoo_select,Urangdan3.Udoo)
 setting_select(hoibok_select,Urangdan3.Hoibok)
 
 
-//
+// select 바뀌는거 감지
 const change_select = (option,array) => {
     let level = Number(option.value)
     let point = 0
-    let aa = array.slice(0,level).reduce((sum,obj)=>{
+    let plus_cajum = array.slice(0,level).reduce((sum,obj)=>{
         point += obj.akmong_point
         return sum + obj.cajum
     },0)
+    Urangdan3.now[option.name] = plus_cajum
+
+    let plus_cajum_sum = 0
+    for(let key in Urangdan3.now){
+        plus_cajum_sum += Urangdan3.now[key]
+    }
 
     akmong_point += point
-    cajum.textContent = Number(Urangdan3.basic) + aa
+    cajum.textContent = Number(Urangdan3.basic) + plus_cajum_sum
     akmong_level_change(akmong_point)
 }
 
@@ -77,7 +84,5 @@ const akmong_level_change = (akmong_point) => {
         level++
         point -= akmong_level[level]
     }
-    akmong_point_p.textContent = `level:${level}, point:${point}/${akmong_level[level+1]}`
+    akmong_point_p.textContent = `악몽레벨:${level}, 악몽점수:${point}/${akmong_level[level+1]}`
 }
-
-console.log(Urangdan3)
