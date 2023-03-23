@@ -65,16 +65,20 @@ const change_select = (option,array) => {
         point += obj.akmong_point
         return sum + obj.cajum
     },0)
-    Urangdan3.now[option.name] = plus_cajum
-
-    let plus_cajum_sum = 0
-    for(let key in Urangdan3.now){
-        plus_cajum_sum += Urangdan3.now[key]
+    Urangdan3.now[option.name] = {
+        cajum:plus_cajum,
+        point:point
     }
 
-    akmong_point += point
+    let plus_cajum_sum = 0
+    let akmong_point_sum = 0
+    for(let key in Urangdan3.now){
+        plus_cajum_sum += Urangdan3.now[key].cajum
+        akmong_point_sum += Urangdan3.now[key].point
+    }
+
     cajum.textContent = Number(Urangdan3.basic) + plus_cajum_sum
-    akmong_level_change(akmong_point)
+    akmong_level_change(akmong_point_sum)
 }
 
 const akmong_level_change = (akmong_point) => {
